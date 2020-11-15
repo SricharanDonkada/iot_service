@@ -24,6 +24,7 @@ var leds = {red:false, blue:false, green:false, yellow:false};
 
 app.post('/leds',(req,res)=>{
     console.log(req.body);
+    console.log(req.body.intent.params.color);
     let color =  req.body.queryResult.parameters.color;
 
     if(leds[color] == undefined){
