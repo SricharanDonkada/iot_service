@@ -19,4 +19,4 @@ app.get('/favicon.ico',(req,res)=>{
 })
 
 
-app.listen(process.env.PORT | 3300,()=>{console.log("server is up!")});
+app.listen(process.env.PORT || 3300,()=>{console.log("server is up!")});
