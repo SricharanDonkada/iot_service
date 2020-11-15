@@ -28,7 +28,7 @@ app.post('/leds',(req,res)=>{
     let color =  req.body.intent.params.color.resolved;
 
     if(leds[color] == undefined){
-        res.json({fulfillmentText:`${color} LED is not there`});
+        res.json({session:req.body.session, prompt:{firstSimple:{ speech:`${color} LED is not there`}}});
     }
     
     // TURN ON INTENT
@@ -41,27 +41,22 @@ app.post('/leds',(req,res)=>{
             leds[color] = true;
         }
     }
-    else if(req.body.queryResult.intent.name == 'projects/nodemcu-colour-led/agent/intents/b830d60b-3abe-4cd7-907a-448d5ff40ead'){
+    else if(req.body.intent.name == 'OFF'){
         if(!leds[color]){
-            res.json({fulfillmentText:`${color} LED is already switched off`});
+            res.json({session:req.body.session, prompt:{firstSimple:{ speech:`${color} LED is already switched off`}}});
         }
         else{
-            res.json({fulfillmentText:`switching off ${color} LED`});
+            res.json({session:req.body.session, prompt:{firstSimple:{ speech:`switching off ${color} LED`}}});
             leds[color] = false;
         }
     }
     
 });
 
-app.get('/*',(req,res)=>{
+app.get('/',(req,res)=>{
     console.log("got a get request");
     res.end();
 })
 
-app.post('/*',(req,res)=>{
-    console.log("got a post request");
-    console.log(req.body);
-    res.end();
-})
 
 app.listen(process.env.PORT || 3300,()=>{console.log("server is up!")});
