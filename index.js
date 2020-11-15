@@ -53,6 +53,35 @@ app.post('/leds',(req,res)=>{
     
 });
 
+app.get('/leds',(req,res)=>{
+    let str = "";
+    if(leds["red"]){
+        str += "o";
+    }
+    else{
+        str+="f";
+    }
+    if(leds["green"]){
+        str += "o";
+    }
+    else{
+        str+="f";
+    }
+    if(leds["blue"]){
+        str += "o";
+    }
+    else{
+        str+="f";
+    }
+    if(leds["yellow"]){
+        str += "o";
+    }
+    else{
+        str+="f";
+    }
+
+})
+
 app.get('/',(req,res)=>{
     console.log("got a get request");
     res.end();
