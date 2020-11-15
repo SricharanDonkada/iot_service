@@ -79,6 +79,7 @@ app.get('/leds',(req,res)=>{
     else{
         str+="f";
     }
+    res.end(str);
 
 })
 
