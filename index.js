@@ -50,8 +50,6 @@ app.post('/leds',(req,res)=>{
         }
     }
     
-    res.json({fulfillmentText:"${}"})
-    res.end();
 });
 
 app.get('/*',(req,res)=>{
