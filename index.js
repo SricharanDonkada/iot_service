@@ -34,10 +34,10 @@ app.post('/leds',(req,res)=>{
     // TURN ON INTENT
     if(req.body.intent.name == "ON"){
         if(leds[color]){
-            res.json({session:req.body.session, firstSimple:{ speech:`${color} LED is already switched on`}});
+            res.json({session:req.body.session, prompt:{firstSimple:{ speech:`${color} LED is already switched on`}}});
         }
         else{
-            res.json({session:req.body.session, firstSimple:{ speech:`switching on ${color} LED`}});
+            res.json({session:req.body.session, prompt:{firstSimple:{ speech:`switching on ${color} LED`}}});
             leds[color] = true;
         }
     }
