@@ -13,5 +13,10 @@ app.get('/',(req,res)=>{
     res.end("working!!!");
 });
 
+app.get('/favicon.ico',(req,res)=>{
+    res.status(404);
+    res.end();
+})
+
 
 app.listen(process.env.PORT | 3300,()=>{console.log("server is up!")});
