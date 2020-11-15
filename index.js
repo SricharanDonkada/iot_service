@@ -20,7 +20,7 @@ app.get('/favicon.ico', (req, res) => {
 
 // LEDs APP
 
-var leds = { red: false, blue: false, green: false, yellow: false };
+var leds = { red: false, blue: false, green: false, orange: false };
 
 app.post('/leds', (req, res) => {
     console.log(req.body);
@@ -77,7 +77,7 @@ app.get('/leds', (req, res) => {
     else {
         str += "f";
     }
-    if (leds["yellow"]) {
+    if (leds["orange"]) {
         str += "o";
     }
     else {
