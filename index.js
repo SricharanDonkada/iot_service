@@ -25,19 +25,19 @@ var leds = {red:false, blue:false, green:false, yellow:false};
 app.post('/leds',(req,res)=>{
     console.log(req.body);
     console.log(req.body.intent.params.color);
-    let color =  req.body.queryResult.parameters.color;
+    let color =  req.body.intent.params.color.resolved;
 
     if(leds[color] == undefined){
         res.json({fulfillmentText:`${color} LED is not there`});
     }
     
     // TURN ON INTENT
-    if(req.body.queryResult.intent.name == "projects/nodemcu-colour-led/agent/intents/0bf9c09d-4e30-4646-b500-ff73aa0f0ef1"){
+    if(req.body.intent.name == "ON"){
         if(leds[color]){
-            res.json({fulfillmentText:`${color} LED is already switched on`});
+            res.json({session:req.body.session, firstSimple:{ speech:`${color} LED is already switched on`}});
         }
         else{
-            res.json({fulfillmentText:`switching on ${color} LED`});
+            res.json({session:req.body.session, firstSimple:{ speech:`switching on ${color} LED`}});
             leds[color] = true;
         }
     }
