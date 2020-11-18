@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"
+        integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg=="
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script>
+        var socket = io('http://localhost:3300');
+
+        document.addEventListener('keyup', (event) => {
+            console.log("released");
+            socket.emit('stop');
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key == 'w') {
+                console.log('w');
+                socket.emit('move-front');
+            }
+            else if(event.key == 's'){
+                console.log('s');
+                socket.emit('move-back');
+            }
+            else if(event.key == 'd'){
+                console.log('s');
+                socket.emit('turn-right');
+            }
+            else if(event.key == 'a'){
+                console.log('a');
+                socket.emit('turn-left');
+            }
+            else if(event.key == 'q'){
+                console.log('q');
+                socket.emit('rotate-left');
+            }
+            else if(event.key == 'e'){
+                console.log('e');
+                socket.emit('rotate-right');
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
